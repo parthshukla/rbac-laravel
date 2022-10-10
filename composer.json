@@ -1,0 +1,26 @@
+{
+    "name": "parthshukla/rbac-laravel",
+    "description": "Implement rbac",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Parth Shukla",
+            "email": "shuklaparth@hotmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "ParthShukla\\Rbac\\": "src"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "ParthShukla\\Rbac\\RbacServiceProvider"
+            ]
+        }
+    }
+}
