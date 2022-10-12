@@ -5,10 +5,8 @@ Rbac-Laravel is package for implementing the Role Based Access control in larave
 List of actions that can be done:
 - [Add New Role](#add-new-role)
 - [List All Roles](#list-all-roles)
+- [Update Role Details](#update-role)
 
-
-
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
 
 ### <a name="add-new-role">Add New Role</a>
 This api end point will be used for adding a new role.
@@ -84,5 +82,18 @@ This api lists all the roles added in the application.
     "prev_page_url": null,
     "to": 2,
     "total": 4
+}
+```
+### <a name="update-role">Update Role Details</a>
+This api end point will be used for updating a new role.
+- id is the unique id of the role to be updated
+###### API End Point: /api/roles/{id}
+###### Request Type: PUT
+###### Request Body
+```
+{
+    "name": "basic",
+    "description": "This is basic role",
+    "status": "active"
 }
 ```
