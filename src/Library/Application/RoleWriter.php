@@ -48,6 +48,28 @@ class RoleWriter
         // saving new role in the db
         return $this->role->save();
     }
+
+    //-------------------------------------------------------------------------
+
+    /**
+     * Updates the existing role information
+     *
+     * @param array $data
+     * @param $id
+     * @return mixed
+     */
+    public function update(array $data, $id)
+    {
+        $role = $this->role->find($id);
+
+        // updating the information with new information
+        $role->name = $data['name'];
+        $role->description = $data['description'];
+        $role->status = $data['status'];
+
+        // saving the updated information
+        return $role->save();
+    }
 }
 // end of class RoleWriter
 // end of file RoleWriter.php
