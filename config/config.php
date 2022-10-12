@@ -2,5 +2,6 @@
 
 return [
     'prefix' => 'api',
-    'middleware' => ['api']
+    'middleware' => ['api'],
+    'perPageResultLimit' => 5
 ];

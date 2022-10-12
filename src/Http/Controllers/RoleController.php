@@ -4,6 +4,7 @@ namespace ParthShukla\Rbac\Http\Controllers;
 
 use Illuminate\Http\Response;
 use ParthShukla\Rbac\Http\Requests\RolePostRequest;
+use ParthShukla\Rbac\Library\Application\RoleReader;
 use ParthShukla\Rbac\Library\Application\RoleWriter;
 
 /**
@@ -23,16 +24,37 @@ class RoleController extends Controller
      */
     protected $roleWriter;
 
+    /**
+     * Instance of RoleReader
+     *
+     * @var RoleReader
+     */
+    protected $roleReader;
+
     //-------------------------------------------------------------------------
 
     /**
      * Constructor
      *
      * @param RoleWriter $roleWriter
+     * @param RoleReader $
      */
-    public function __construct(RoleWriter $roleWriter)
+    public function __construct(RoleWriter $roleWriter, RoleReader $roleReader)
     {
         $this->roleWriter = $roleWriter;
+        $this->roleReader = $roleReader;
+    }
+
+    //-------------------------------------------------------------------------
+
+    /**
+     * Handles request for listing all the roles.
+     *
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\Routing\ResponseFactory|Response
+     */
+    public function index()
+    {
+        return response($this->roleReader->roleList());
     }
 
     //-------------------------------------------------------------------------

@@ -35,7 +35,7 @@ class RbacServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->mergeConfigFrom(__DIR__.'/../config/config.php', 'rbac-laravel');
+        $this->mergeConfigFrom(__DIR__.'/../config/config.php', 'ps-rbac');
 
     }
 }
