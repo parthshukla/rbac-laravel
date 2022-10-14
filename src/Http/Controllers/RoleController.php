@@ -112,6 +112,19 @@ class RoleController extends Controller
         return response(["message" => __('ps-rbac::general.server_error')], Response::HTTP_INTERNAL_SERVER_ERROR);
 
     }
+
+    //-------------------------------------------------------------------------
+
+    /**
+     * Handles requests for showing details of a role
+     *
+     * @param $id
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\Routing\ResponseFactory|Response
+     */
+    public function show($id)
+    {
+        return response($this->roleReader->getRoleDetails($id), Response::HTTP_OK);
+    }
 }
 // end of class RoleController
 // end of file RoleController.php
