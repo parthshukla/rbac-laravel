@@ -2,6 +2,7 @@
 
 namespace ParthShukla\Rbac\Library\Application;
 
+use ParthShukla\Rbac\Http\Resources\RoleCollection;
 use ParthShukla\Rbac\Http\Resources\RoleResource;
 use ParthShukla\Rbac\Models\Role;
 
@@ -43,7 +44,7 @@ class RoleReader
     {
         $pageLimit = (request()->has('limit') && request('limit') > 0) ?
                             request('limit'): config('ps-rbac.perPageResultLimit');
-        return $this->role->paginate($pageLimit);
+        return new RoleCollection($this->role->paginate($pageLimit));
     }
 
     //-------------------------------------------------------------------------
