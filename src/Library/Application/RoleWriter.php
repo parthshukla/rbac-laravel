@@ -70,6 +70,25 @@ class RoleWriter
         // saving the updated information
         return $role->save();
     }
+
+    //-------------------------------------------------------------------------
+
+    /**
+     * Updates the status of a role in the application.
+     *
+     * @param array $data
+     * @return mixed
+     */
+    public function updateStatus(array $data)
+    {
+        $role = $this->role->findOrFail($data['id']);
+
+        //updating the status with new status
+        $role->status = $data['status'];
+
+        // saving the updated information
+        return $role->save();
+    }
 }
 // end of class RoleWriter
 // end of file RoleWriter.php

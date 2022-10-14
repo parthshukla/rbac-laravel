@@ -5,6 +5,7 @@ namespace ParthShukla\Rbac\Http\Controllers;
 use Illuminate\Http\Response;
 use ParthShukla\Rbac\Http\Requests\RolePostRequest;
 use ParthShukla\Rbac\Http\Requests\RolePutRequest;
+use ParthShukla\Rbac\Http\Requests\RoleStatusChangeRequest;
 use ParthShukla\Rbac\Library\Application\RoleReader;
 use ParthShukla\Rbac\Library\Application\RoleWriter;
 
@@ -92,6 +93,24 @@ class RoleController extends Controller
             return response(["message" => __('ps-rbac::general.update_role_success')]);
         }
         return response(["message" => __('ps-rbac::general.server_error')], Response::HTTP_INTERNAL_SERVER_ERROR);
+    }
+
+    //-------------------------------------------------------------------------
+
+    /**
+     * Handle requests for changing the status of a role.
+     *
+     * @param RoleStatusChangeRequest $request
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\Routing\ResponseFactory|Response
+     */
+    public function changeStatus(RoleStatusChangeRequest $request)
+    {
+        if($this->roleWriter->updateStatus($request->validated()))
+        {
+            return response(["message" => __('ps-rbac::general.role_status_change_success')]);
+        }
+        return response(["message" => __('ps-rbac::general.server_error')], Response::HTTP_INTERNAL_SERVER_ERROR);
+
     }
 }
 // end of class RoleController
