@@ -3,10 +3,15 @@
 
 Rbac-Laravel is package for implementing the Role Based Access control in laravel application.
 List of actions that can be done:
+#####Role Management
 - [Add New Role](#add-new-role)
 - [List All Roles](#list-all-roles)
 - [Update Role Details](#update-role)
+- [Change Role Status](#change-role-status)
+- [View Role Details](#view-role-details)
 
+#####Permission Management
+- [Add New Permission](#add-new-permission)
 
 ### <a name="add-new-role">Add New Role</a>
 This api end point will be used for adding a new role.
@@ -29,60 +34,29 @@ This api lists all the roles added in the application.
 ###### Response:
 ```
 {
-    "current_page": 1,
     "data": [
         {
             "id": 1,
             "name": "Administrator",
             "description": "This is administrator role",
-            "status": "blocked",
-            "created_at": "2022-10-10T10:22:28.000000Z",
-            "updated_at": "2022-10-10T10:22:28.000000Z",
-            "deleted_at": null
+            "status": "blocked"
         },
         {
             "id": 2,
             "name": "Writer",
             "description": "This is writer role",
-            "status": "blocked",
-            "created_at": "2022-10-10T10:41:05.000000Z",
-            "updated_at": "2022-10-10T10:41:05.000000Z",
-            "deleted_at": null
+            "status": "blocked"
         }
     ],
-    "first_page_url": "http://127.0.0.1:8001/api/roles?page=1",
-    "from": 1,
-    "last_page": 2,
-    "last_page_url": "http://127.0.0.1:8001/api/roles?page=2",
-    "links": [
-        {
-            "url": null,
-            "label": "&laquo; Previous",
-            "active": false
-        },
-        {
-            "url": "http://127.0.0.1:8001/api/roles?page=1",
-            "label": "1",
-            "active": true
-        },
-        {
-            "url": "http://127.0.0.1:8001/api/roles?page=2",
-            "label": "2",
-            "active": false
-        },
-        {
-            "url": "http://127.0.0.1:8001/api/roles?page=2",
-            "label": "Next &raquo;",
-            "active": false
-        }
-    ],
-    "next_page_url": "http://127.0.0.1:8001/api/roles?page=2",
-    "path": "http://127.0.0.1:8001/api/roles",
-    "per_page": 2,
-    "prev_page_url": null,
-    "to": 2,
-    "total": 4
+    "pagination": {
+        "total": 4,
+        "count": 2,
+        "per_page": 2,
+        "current_page": 1,
+        "total_pages": 2
+    }
 }
+
 ```
 ### <a name="update-role">Update Role Details</a>
 This api end point will be used for updating a new role.
@@ -95,5 +69,43 @@ This api end point will be used for updating a new role.
     "name": "basic",
     "description": "This is basic role",
     "status": "active"
+}
+```
+### <a name="change-role-status">Change Role Status</a>
+This api end point will be used for changing the status of an existing role.
+###### API End Point: /api/roles/status/change
+###### Request Type: PUT
+###### Request Body
+```
+{
+    "id": 12345678,
+    "status": "open"
+}
+```
+### <a name="view-role-details">View Role Details</a>
+This api end point will return the details of the role matching the passed id
+###### API End Point: /api/roles/{id}
+- id: unique id of the role whose details is required
+###### Request Type: GET
+###### Response Body
+```
+{
+    "id": 1,
+    "name": "Administrator",
+    "description": "This is administrator role",
+    "status": "blocked"
+}
+```
+
+### <a name="view-role-details">Add New Permission</a>
+This API end point will be used to add a new permission details
+###### API End Point: /api/permissions
+- id: unique id of the role whose details is required
+###### Request Type: POST
+###### Request Body
+```
+{
+    "name": "Add role",
+    "description": "A role with this permission can add a new role"
 }
 ```
