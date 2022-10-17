@@ -9,4 +9,5 @@ return [
     "role_status_change_success" => "Role status changed successfully.",
 
     "add_new_permission_success" => "Permission added successfully.",
+    "update_permission_success" => "Permission updated successfully.",
 ];

@@ -2,9 +2,9 @@
 
 namespace ParthShukla\Rbac\Http\Controllers;
 
-use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use ParthShukla\Rbac\Http\Requests\AddNewPermission;
+use ParthShukla\Rbac\Http\Requests\UpdatePermissionRequest;
 use ParthShukla\Rbac\Library\Application\PermissionWriter;
 
 /**
@@ -79,18 +79,27 @@ class PermissionController extends Controller
         //
     }
 
+    //-------------------------------------------------------------------------
+
 
     /**
-     * Update the specified resource in storage.
+     * Handles request for updating permission information
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param UpdatePermissionRequest $request
+     * @param $id
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\Routing\ResponseFactory|Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdatePermissionRequest $request, $id)
     {
-        //
+        if($this->permissionWriter->update($request->validated(), $id))
+        {
+            return response(['message' => __('ps-rbac::general.update_permission_success')], Response::HTTP_OK);
+        }
+
+        return response(["message" => __('ps-rbac::general.server_error')], Response::HTTP_INTERNAL_SERVER_ERROR);
     }
+
+    //-------------------------------------------------------------------------
 
     /**
      * Remove the specified resource from storage.

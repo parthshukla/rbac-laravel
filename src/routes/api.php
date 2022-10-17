@@ -11,5 +11,6 @@ Route::group(['prefix' => 'api', 'middleware' => 'api'], function () {
 
     //API end point related to permissions
     Route::post('permissions',[\ParthShukla\Rbac\Http\Controllers\PermissionController::class, 'store'])->name('permissions.create');
+    Route::put('permissions/{id}', [\ParthShukla\Rbac\Http\Controllers\PermissionController::class, 'update'])->name('permissions.update');
 });
 

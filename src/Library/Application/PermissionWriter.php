@@ -50,6 +50,28 @@ class PermissionWriter
         // saving the permission details
         return $this->permission->save();
     }
+
+    //-------------------------------------------------------------------------
+
+    /**
+     * Updates the permission information
+     *
+     * @param array $data
+     * @param $id
+     * @return bool
+     */
+    public function update(array $data, $id)
+    {
+        $permission = $this->permission->findOrFail($id);
+
+        // updating the information
+        $permission->name = $data['name'];
+        $permission->description = $data['description'];
+        $permission->status = $data['status'];
+
+        // saving the updated information
+        return $permission->save();
+    }
 }
 // end of class PermissionWriter
 // end of file PermissionWriter.php
