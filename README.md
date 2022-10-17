@@ -12,6 +12,7 @@ List of actions that can be done:
 
 #####Permission Management
 - [Add New Permission](#add-new-permission)
+- [Update Permission Details]
 
 ### <a name="add-new-role">Add New Role</a>
 This api end point will be used for adding a new role.
@@ -107,5 +108,18 @@ This API end point will be used to add a new permission details
 {
     "name": "Add role",
     "description": "A role with this permission can add a new role"
+}
+```
+### <a name="update-permission">Update permission Details</a>
+This api end point will be used for updating an existing  role.
+- id is the unique id of the permission to be updated
+###### API End Point: /api/permissons/{id}
+###### Request Type: PUT
+###### Request Body
+```
+{
+    "name": "Add Role",
+    "description": "Role with this permission can add a new role.",
+    "status": "active"
 }
 ```
