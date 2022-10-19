@@ -12,7 +12,10 @@ List of actions that can be done:
 
 #####Permission Management
 - [Add New Permission](#add-new-permission)
-- [Update Permission Details]
+- [Update Permission Details](#update-permission)
+- [View Permission Details](#view-permission-details)
+- [List all Permissions](#list-all-permissions)
+- [Change Permission Status](#change-permission-status)
 
 ### <a name="add-new-role">Add New Role</a>
 This api end point will be used for adding a new role.
@@ -113,7 +116,7 @@ This API end point will be used to add a new permission details
 ### <a name="update-permission">Update permission Details</a>
 This api end point will be used for updating an existing  role.
 - id is the unique id of the permission to be updated
-###### API End Point: /api/permissons/{id}
+###### API End Point: /api/permissions/{id}
 ###### Request Type: PUT
 ###### Request Body
 ```
@@ -121,5 +124,63 @@ This api end point will be used for updating an existing  role.
     "name": "Add Role",
     "description": "Role with this permission can add a new role.",
     "status": "active"
+}
+```
+### <a name="view-permission-details">View Permission Details</a>
+This api end point will return the details of the permission matching the passed id
+###### API End Point: /api/permission/{id}
+- id: unique id of the permission whose details is required
+###### Request Type: GET
+###### Response Body
+```
+{
+    "id": 1,
+    "name": "Add new role",
+    "description": "A role with this permission can add a new role",
+    "status": "active"
+}
+```
+### <a name="list-all-permissions">List All Permissions</a>
+This api lists all the permissions added in the application.
+- limit is non-required parameter. Value of this parameter decides that number of results to be returned in the response. Default value is as per the application settings
+- page is non-required parameter. Value of this parameter is used for identifying the current page for the paginated result. Default value is 1
+###### API End Point: /api/permissions?limit=2&page=1
+###### Request Type: GET
+###### Response:
+```
+{
+    "data": [
+        {
+            "id": 1,
+            "name": "Add new role",
+            "description": "A role with this permission can add a new role",
+            "status": "active"
+        },
+        {
+            "id": 2,
+            "name": "List Roles",
+            "description": "A role with this permission can view list of all the roles",
+            "status": "blocked"
+        }
+    ],
+    "pagination": {
+        "totalResult": 2,
+        "count": 2,
+        "per_page": 5,
+        "current_page": 1,
+        "total_pages": 1
+    }
+}
+
+```
+### <a name="change-permission-status">Change Permission Status</a>
+This api end point will be used for changing the status of an existing permission.
+###### API End Point: /api/permissions/status/change
+###### Request Type: PUT
+###### Request Body
+```
+{
+    "id": 12345678,
+    "status": "open"
 }
 ```
