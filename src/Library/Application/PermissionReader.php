@@ -2,6 +2,7 @@
 
 namespace ParthShukla\Rbac\Library\Application;
 
+use ParthShukla\Rbac\Http\Resources\PermissionCollection;
 use ParthShukla\Rbac\Http\Resources\PermissionResource;
 use ParthShukla\Rbac\Models\Permission;
 
@@ -37,7 +38,7 @@ class PermissionReader
     //-------------------------------------------------------------------------
 
     /**
-     * Reads details of the permisison matching the passed id
+     * Reads details of the permission matching the passed id
      *
      * @param $permisisonId
      * @return PermissionResource
@@ -45,6 +46,21 @@ class PermissionReader
     public function getPermissionDetails($permisisonId)
     {
         return new PermissionResource($this->permission->find($permisisonId));
+    }
+
+    //-------------------------------------------------------------------------
+
+    /**
+     * Returns list of the available permissions
+     *
+     * @return PermissionCollection
+     */
+    public function getPermissionList()
+    {
+        $pageLimit = (request()->has('limit') && request('limit') > 0) ?
+            request('limit'): config('ps-rbac.perPageResultLimit');
+
+        return new PermissionCollection($this->permission->paginate($pageLimit));
     }
 
 }

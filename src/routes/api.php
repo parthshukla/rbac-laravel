@@ -13,5 +13,6 @@ Route::group(['prefix' => 'api', 'middleware' => 'api'], function () {
     Route::post('permissions',[\ParthShukla\Rbac\Http\Controllers\PermissionController::class, 'store'])->name('permissions.create');
     Route::put('permissions/{id}', [\ParthShukla\Rbac\Http\Controllers\PermissionController::class, 'update'])->name('permissions.update');
     Route::get('permissions/{id}', [\ParthShukla\Rbac\Http\Controllers\PermissionController::class, 'show'])->name('permissions.details');
+    Route::get('permissions', [\ParthShukla\Rbac\Http\Controllers\PermissionController::class, 'index'])->name('permissions.list');
 });
 

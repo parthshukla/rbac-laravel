@@ -49,13 +49,13 @@ class PermissionController extends Controller
     //-------------------------------------------------------------------------
 
     /**
-     * Display a listing of the resource.
+     * Handles request for listing all the permissions
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\Routing\ResponseFactory|Response
      */
     public function index()
     {
-        //
+        return response($this->permissionReader->getPermissionList(), Response::HTTP_OK);
     }
 
     //-------------------------------------------------------------------------
