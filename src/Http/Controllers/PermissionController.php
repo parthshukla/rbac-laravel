@@ -4,6 +4,7 @@ namespace ParthShukla\Rbac\Http\Controllers;
 
 use Illuminate\Http\Response;
 use ParthShukla\Rbac\Http\Requests\AddNewPermission;
+use ParthShukla\Rbac\Http\Requests\PermissionStatusUpdateRequest;
 use ParthShukla\Rbac\Http\Requests\UpdatePermissionRequest;
 use ParthShukla\Rbac\Library\Application\PermissionReader;
 use ParthShukla\Rbac\Library\Application\PermissionWriter;
@@ -112,14 +113,18 @@ class PermissionController extends Controller
     //-------------------------------------------------------------------------
 
     /**
-     * Remove the specified resource from storage.
+     * Handles request for updating the status of a permission
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param PermissionStatusUpdateRequest $request
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\Routing\ResponseFactory|Response
      */
-    public function destroy($id)
+    public function changeStatus(PermissionStatusUpdateRequest $request)
     {
-        //
+        if($this->permissionWriter->updateStatus($request->validated()))
+        {
+            return response(['message' => __('ps-rbac::general.permission_status_change_success')], Response::HTTP_OK);
+        }
+        return response(["message" => __('ps-rbac::general.server_error')], Response::HTTP_INTERNAL_SERVER_ERROR);
     }
 }
 // end of class PermissionController

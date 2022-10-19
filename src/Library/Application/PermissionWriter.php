@@ -72,6 +72,25 @@ class PermissionWriter
         // saving the updated information
         return $permission->save();
     }
+
+    //-------------------------------------------------------------------------
+
+    /**
+     * Updates the status of a permission.
+     *
+     * @param $data
+     * @return mixed
+     */
+    public function updateStatus($data)
+    {
+        $permission = $this->permission->findOrFail($data['id']);
+
+        // updating the status
+        $permission->status = $data['status'];
+
+        // saving the updated information
+        return $permission->save();
+    }
 }
 // end of class PermissionWriter
 // end of file PermissionWriter.php
