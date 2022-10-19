@@ -5,6 +5,7 @@ namespace ParthShukla\Rbac\Http\Controllers;
 use Illuminate\Http\Response;
 use ParthShukla\Rbac\Http\Requests\AddNewPermission;
 use ParthShukla\Rbac\Http\Requests\UpdatePermissionRequest;
+use ParthShukla\Rbac\Library\Application\PermissionReader;
 use ParthShukla\Rbac\Library\Application\PermissionWriter;
 
 /**
@@ -24,16 +25,25 @@ class PermissionController extends Controller
      */
     protected $permissionWriter;
 
+    /**
+     * Instance of the PermissionReader
+     *
+     * @var PermissionReader
+     */
+    protected $permissionReader;
+
     //-------------------------------------------------------------------------
 
     /**
-     * Construct
+     * Constructor
      *
      * @param PermissionWriter $permissionWriter
+     * @param PermissionReader $permissionReader
      */
-    public function __construct(PermissionWriter $permissionWriter)
+    public function __construct(PermissionWriter $permissionWriter, PermissionReader $permissionReader)
     {
         $this->permissionWriter = $permissionWriter;
+        $this->permissionReader = $permissionReader;
     }
 
     //-------------------------------------------------------------------------
@@ -69,14 +79,14 @@ class PermissionController extends Controller
     //-------------------------------------------------------------------------
 
     /**
-     * Display the specified resource.
+     * Handles request for showing details of a role
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
-        //
+        return response($this->permissionReader->getPermissionDetails($id), Response::HTTP_OK);
     }
 
     //-------------------------------------------------------------------------
