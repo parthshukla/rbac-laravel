@@ -32,6 +32,18 @@ class Role extends Model
      * @var string[]
      */
     protected $guarded = ['id'];
+
+    //-------------------------------------------------------------------------
+
+    /**
+     * Get all the permissions assigned to this role
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function permissions()
+    {
+        return $this->belongsToMany(Permission::class);
+    }
 }
 // end of class Role
 // end of file Role.php

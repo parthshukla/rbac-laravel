@@ -11,4 +11,6 @@ return [
     "add_new_permission_success" => "Permission added successfully.",
     "update_permission_success" => "Permission updated successfully.",
     "permission_status_change_success" => "Permission status changed successfully.",
+
+    "assign_permission_to_role_success" => "Permission assigned successfully",
 ];
