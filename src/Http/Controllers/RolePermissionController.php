@@ -5,6 +5,7 @@ namespace ParthShukla\Rbac\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use ParthShukla\Rbac\Http\Requests\AssignPermissionRoleRequest;
+use ParthShukla\Rbac\Library\Application\RolePermissionReader;
 use ParthShukla\Rbac\Library\Application\RolePermissionWriter;
 
 /**
@@ -24,17 +25,26 @@ class RolePermissionController extends Controller
      */
     protected $rolePermissionWriter;
 
+    /**
+     * Instance of RolePermissionReader
+     * 
+     * @var RolePermissionReader
+     */
+    protected $rolePermissionReader;
+
     //-------------------------------------------------------------------------
 
-
     /**
-     * Constructor
+     * Construct
      *
      * @param RolePermissionWriter $rolePermissionWriter
+     * @param RolePermissionReader $rolePermissionReader
      */
-    public function __construct(RolePermissionWriter $rolePermissionWriter)
+    public function __construct(RolePermissionWriter $rolePermissionWriter,
+                        RolePermissionReader $rolePermissionReader)
     {
         $this->rolePermissionWriter = $rolePermissionWriter;
+        $this->rolePermissionReader = $rolePermissionReader;
     }
 
     //-------------------------------------------------------------------------
@@ -71,15 +81,17 @@ class RolePermissionController extends Controller
     //-------------------------------------------------------------------------
 
     /**
-     * Display the specified resource.
+     * Handles request for listing all the permissions assigned to a role.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param int $roleId
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\Routing\ResponseFactory|Response
      */
-    public function show($id)
+    public function show(int $roleId)
     {
-        //
+        return response($this->rolePermissionReader->getPermissionsAssignedToRole($roleId), Response::HTTP_OK);
     }
+
+    //-------------------------------------------------------------------------
 
     /**
      * Show the form for editing the specified resource.
