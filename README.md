@@ -3,21 +3,21 @@
 
 Rbac-Laravel is package for implementing the Role Based Access control in laravel application.
 List of actions that can be done:
-#####Role Management
+##### Role Management
 - [Add New Role](#add-new-role)
 - [List All Roles](#list-all-roles)
 - [Update Role Details](#update-role)
 - [Change Role Status](#change-role-status)
 - [View Role Details](#view-role-details)
 
-#####Permission Management
+##### Permission Management
 - [Add New Permission](#add-new-permission)
 - [Update Permission Details](#update-permission)
 - [View Permission Details](#view-permission-details)
 - [List all Permissions](#list-all-permissions)
 - [Change Permission Status](#change-permission-status)
 
-######Manage Role Permissions
+###### Manage Role Permissions
 - [Assign Permissions to Role]()
 - [List Assigned Permissions to Role]()
 
