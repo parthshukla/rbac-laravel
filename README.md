@@ -17,6 +17,10 @@ List of actions that can be done:
 - [List all Permissions](#list-all-permissions)
 - [Change Permission Status](#change-permission-status)
 
+######Manage Role Permissions
+- [Assign Permissions to Role]()
+- [List Assigned Permissions to Role]()
+
 ### <a name="add-new-role">Add New Role</a>
 This api end point will be used for adding a new role.
 ###### API End Point: /api/roles
@@ -182,5 +186,45 @@ This api end point will be used for changing the status of an existing permissio
 {
     "id": 12345678,
     "status": "open"
+}
+```
+
+### <a name="view-role-details">Assign Permission To Role</a>
+This API end point will be used for assigning permissions to a role
+###### API End Point: /api/assign_permissions
+- id: unique id of the role whose details is required
+###### Request Type: POST
+###### Request Body
+```
+{
+    "role": 1,
+    "permissions": [1,2]
+}
+```
+### <a name="list-role-permissions">List All Permissions Assigned to a Role</a>
+This api lists all the permissions assigned to a role.
+###### API End Point: /api/assigned_permissions/{roleId}
+###### Request Type: GET
+###### Response:
+```
+{
+    "id": 1,
+    "name": "Administrator",
+    "description": "This is administrator role",
+    "status": "blocked",
+    "permissions": [
+        {
+            "id": 1,
+            "name": "Add role",
+            "description": "A role with this permission can add a new role",
+            "status": "blocked"
+        },
+        {
+            "id": 2,
+            "name": "List Roles",
+            "description": "A role with this permission view the list of roles",
+            "status": "blocked"
+        }
+    ]
 }
 ```
