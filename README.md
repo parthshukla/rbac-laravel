@@ -17,9 +17,9 @@ List of actions that can be done:
 - [List all Permissions](#list-all-permissions)
 - [Change Permission Status](#change-permission-status)
 
-###### Manage Role Permissions
-- [Assign Permissions to Role]()
-- [List Assigned Permissions to Role]()
+##### Manage Role Permissions
+- [Assign Permissions to Role](#assign-role-to-permission)
+- [List Assigned Permissions to Role](#list-role-permissions)
 
 ### <a name="add-new-role">Add New Role</a>
 This api end point will be used for adding a new role.
@@ -189,7 +189,7 @@ This api end point will be used for changing the status of an existing permissio
 }
 ```
 
-### <a name="view-role-details">Assign Permission To Role</a>
+### <a name="assign-role-to-permission">Assign Permission To Role</a>
 This API end point will be used for assigning permissions to a role
 ###### API End Point: /api/assign_permissions
 - id: unique id of the role whose details is required
