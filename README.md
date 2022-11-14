@@ -20,6 +20,7 @@ List of actions that can be done:
 ##### Manage Role Permissions
 - [Assign Permissions to Role](#assign-role-to-permission)
 - [List Assigned Permissions to Role](#list-role-permissions)
+- [Check if Permission Assigned to a Role](#check-role-permission)
 
 ### <a name="add-new-role">Add New Role</a>
 This api end point will be used for adding a new role.
@@ -227,4 +228,36 @@ This api lists all the permissions assigned to a role.
         }
     ]
 }
+```
+### <a name="check-role-permission">Check if a Permission assigned to a role</a>
+This method will be used to check if a permission has been assigned to a particular role.
+
+#### Sample Code Implementation
+```
+<?php
+namespace App\Libraray\Application;
+use ParthShukla\Rbac\Library\Application\Rbac;
+
+class TestPackageFeature
+{
+protected $rbac;
+
+    /**
+     * @param Rbac $rbac
+     */
+    public function __construct(Rbac $rbac)
+    {
+        $this->rbac = $rbac;
+    }
+
+    //-------------------------------------------------------------------------
+
+    public function canUserPerformAction($roleId, $permission)
+    {
+        return $this->rbac->checkAccess($roleId, $permission);
+    }
+
+}
+// end of class TestPackageFeature
+// end of file TestPackageFeature.php
 ```
