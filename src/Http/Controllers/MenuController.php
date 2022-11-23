@@ -5,6 +5,7 @@ namespace ParthShukla\Rbac\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use ParthShukla\Rbac\Http\Requests\MenuPostRequest;
+use ParthShukla\Rbac\Library\Application\MenuReader;
 use ParthShukla\Rbac\Library\Application\MenuWriter;
 
 /**
@@ -24,16 +25,25 @@ class MenuController extends Controller
      */
     protected $menuWriter;
 
+    /**
+     * Instance of MenuReader
+     *
+     * @var MenuReader
+     */
+    protected $menuReader;
+
     //-------------------------------------------------------------------------
 
     /**
      * Constructor
      *
      * @param MenuWriter $menuWriter
+     * @param MenuReader $menuReader
      */
-    public function __construct(MenuWriter $menuWriter)
+    public function __construct(MenuWriter $menuWriter, MenuReader $menuReader)
     {
         $this->menuWriter = $menuWriter;
+        $this->menuReader = $menuReader;
     }
 
     //-------------------------------------------------------------------------
@@ -83,15 +93,17 @@ class MenuController extends Controller
     //-------------------------------------------------------------------------
 
     /**
-     * Display the specified resource.
+     * Handles request for showing the details of a menu
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param $id
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\Routing\ResponseFactory|Response
      */
     public function show($id)
     {
-        //
+        return response($this->menuReader->getMenuDetails($id), Response::HTTP_OK);
     }
+
+    //-------------------------------------------------------------------------
 
     /**
      * Show the form for editing the specified resource.
