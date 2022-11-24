@@ -5,6 +5,7 @@ namespace ParthShukla\Rbac\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use ParthShukla\Rbac\Http\Requests\MenuPostRequest;
+use ParthShukla\Rbac\Http\Requests\MenuPutRequest;
 use ParthShukla\Rbac\Library\Application\MenuReader;
 use ParthShukla\Rbac\Library\Application\MenuWriter;
 
@@ -61,18 +62,6 @@ class MenuController extends Controller
     //-------------------------------------------------------------------------
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    //-------------------------------------------------------------------------
-
-    /**
      * Handles request for adding a new menu item
      *
      * @param MenuPostRequest $request
@@ -106,26 +95,20 @@ class MenuController extends Controller
     //-------------------------------------------------------------------------
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param MenuPutRequest $request
+     * @param int $id
+     * @return void
      */
-    public function edit($id)
+    public function update(MenuPutRequest $request, int $id)
     {
-        //
-    }
+        if($this->menuWriter->update($request->validated(), $id))
+        {
+            return response(['message' => __('ps-rbac::general.update_menu_success')],
+                    Response::HTTP_OK);
+        }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
+        return response(["message" => __('ps-rbac::general.server_error')],
+                    Response::HTTP_INTERNAL_SERVER_ERROR);
     }
 
     /**

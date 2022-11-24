@@ -53,6 +53,30 @@ class MenuWriter
         // saving the menu
         return $this->menu->save();
     }
+
+    //-------------------------------------------------------------------------
+
+    /**
+     * Updates the information of the menu matching the passed id
+     *
+     * @param array $data
+     * @param int $id
+     * @return mixed
+     */
+    public function update(array $data, int $id)
+    {
+        $menu = $this->menu->findOrFail($id);
+
+        //updating the information
+        $menu->name = $data['name'];
+        $menu->display_name = $data['displayName'];
+        $menu->parent_id = empty($data['parentId']) ? null : $data['parentId'];
+        $menu->display_order = empty($data['displayOrder']) ? 0 : $data['displayOrder'];
+        $menu->status = empty($data['status']) ? 'disabled' : $data['status'];
+
+        // saving the updated information
+        return $menu->save();
+    }
 }
 // end of class MenuWriter
 // end of file MenuWriter.php

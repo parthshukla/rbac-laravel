@@ -15,4 +15,5 @@ return [
     "assign_permission_to_role_success" => "Permission assigned successfully",
 
     "add_new_menu_success" => "Menu item added successfully",
+    "update_menu_success" => "Menu information updated successfully",
 ];

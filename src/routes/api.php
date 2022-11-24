@@ -23,6 +23,7 @@ Route::group(['prefix' => 'api', 'middleware' => 'api'], function () {
     //API end points related to menu configuration
     Route::post('menu', [\ParthShukla\Rbac\Http\Controllers\MenuController::class, 'store'])->name('menu.create');
     Route::get('menu/{id}', [\ParthShukla\Rbac\Http\Controllers\MenuController::class, 'show'])->name('menu.show');
+    Route::put('menu/{id}', [\ParthShukla\Rbac\Http\Controllers\MenuController::class, 'update'])->name('menu.update');
 
 });
 
