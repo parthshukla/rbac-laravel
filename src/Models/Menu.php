@@ -29,6 +29,22 @@ class Menu extends Model
      * @var string[]
      */
     protected $guarded = ['id'];
+
+    //-------------------------------------------------------------------------
+
+    /**
+     * Returns the menu items in paginated format
+     *
+     * @param int $pageLimit
+     * @return mixed
+     */
+    public function getMenuItems(int $pageLimit)
+    {
+        return $this->leftJoin('menu as pMenu', 'menu.parent_id', '=', 'pMenu.id')
+                    ->select(['menu.id', 'menu.name', 'menu.display_name', 'menu.parent_id', 'pMenu.name as parent_name',
+                           'menu.display_order', 'menu.status'])
+                    ->paginate($pageLimit);
+    }
 }
 // end of class Menu
 // end of file Menu.php

@@ -2,7 +2,6 @@
 
 namespace ParthShukla\Rbac\Http\Controllers;
 
-use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use ParthShukla\Rbac\Http\Requests\MenuPostRequest;
 use ParthShukla\Rbac\Http\Requests\MenuPutRequest;
@@ -50,13 +49,13 @@ class MenuController extends Controller
     //-------------------------------------------------------------------------
 
     /**
-     * Display a listing of the resource.
+     * Handles request for showing list of menu items
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\Routing\ResponseFactory|Response
      */
     public function index()
     {
-        //
+        return response($this->menuReader->getMenuList(), Response::HTTP_OK);
     }
 
     //-------------------------------------------------------------------------
@@ -95,6 +94,8 @@ class MenuController extends Controller
     //-------------------------------------------------------------------------
 
     /**
+     * Handles request for updating a menu item
+     *
      * @param MenuPutRequest $request
      * @param int $id
      * @return void
