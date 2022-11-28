@@ -22,6 +22,13 @@ List of actions that can be done:
 - [List Assigned Permissions to Role](#list-role-permissions)
 - [Check if Permission Assigned to a Role](#check-role-permission)
 
+##### Menu Management
+- [Add New Menu Item](#add-new-menu-item)
+- [Update Menu Item Information](#update-menu-item)
+- [View Menu Item Details](#view-menu-item-details)
+- [List all Menu Items](#list-menu-items)
+- [Change Menu Item Status](#change-menu-item-status)
+
 ### <a name="add-new-role">Add New Role</a>
 This api end point will be used for adding a new role.
 ###### API End Point: /api/roles
@@ -67,8 +74,9 @@ This api lists all the roles added in the application.
 }
 
 ```
+
 ### <a name="update-role">Update Role Details</a>
-This api end point will be used for updating a new role.
+This api end point will be used for updating an existing role.
 - id is the unique id of the role to be updated
 ###### API End Point: /api/roles/{id}
 ###### Request Type: PUT
@@ -91,6 +99,7 @@ This api end point will be used for changing the status of an existing role.
     "status": "open"
 }
 ```
+
 ### <a name="view-role-details">View Role Details</a>
 This api end point will return the details of the role matching the passed id
 ###### API End Point: /api/roles/{id}
@@ -145,6 +154,7 @@ This api end point will return the details of the permission matching the passed
     "status": "active"
 }
 ```
+
 ### <a name="list-all-permissions">List All Permissions</a>
 This api lists all the permissions added in the application.
 - limit is non-required parameter. Value of this parameter decides that number of results to be returned in the response. Default value is as per the application settings
@@ -178,6 +188,7 @@ This api lists all the permissions added in the application.
 }
 
 ```
+
 ### <a name="change-permission-status">Change Permission Status</a>
 This api end point will be used for changing the status of an existing permission.
 ###### API End Point: /api/permissions/status/change
@@ -202,6 +213,7 @@ This API end point will be used for assigning permissions to a role
     "permissions": [1,2]
 }
 ```
+
 ### <a name="list-role-permissions">List All Permissions Assigned to a Role</a>
 This api lists all the permissions assigned to a role.
 ###### API End Point: /api/assigned_permissions/{roleId}
@@ -260,4 +272,95 @@ protected $rbac;
 }
 // end of class TestPackageFeature
 // end of file TestPackageFeature.php
+```
+
+### <a name="add-new-menu-item">Add New Menu Item</a>
+This api end point will be used for adding a new menu item.
+###### API End Point: /api/menu
+###### Request Type: POST
+###### Request Body
+```
+{
+    "name": "Dashboard",
+    "parentId": "",
+    "displayName": "",
+    "displayOrder": "",
+    "status": ""
+}
+```
+
+### <a name="update-menu-item">Update Menu Item Information</a>
+This api end point will be used for updating an existing menu item.
+- id is the unique id of the role to be updated
+###### API End Point: /api/menu/{id}
+###### Request Type: PUT
+###### Request Body
+```
+{
+    "name": "Dashboard",
+    "parentId": "",
+    "displayName": "My Dashboard",
+    "displayOrder": "",
+    "status": ""
+}
+```
+
+### <a name="view-menu-item-details">View Menu Item Details</a>
+This api end point will return the details of the menu item matching the passed id
+###### API End Point: /api/menu/{id}
+- id: unique id of the role whose details is required
+###### Request Type: GET
+###### Response Body
+```
+{
+    "id": 1,
+    "name": "Dashboard",
+    "displayName": "My Dashboard",
+    "parentId": 0,
+    "displayOrder": 0,
+    "status": "active"
+}
+```
+
+### <a name="list-menu-items">List All Menu Items</a>
+This api lists all the menu items added in the application.
+- limit is non-required parameter. Value of this parameter decides that number of results to be returned in the response. Default value is as per the application settings
+- page is non-required parameter. Value of this parameter is used for identifying the current page for the paginated result. Default value is 1
+###### API End Point: /api/menu?limit=2&page=1
+###### Request Type: GET
+###### Response:
+```
+{
+    "data": [
+        {
+            "id": 1,
+            "name": "Dashboard",
+            "displayName": "My Dashboard",
+            "parentId": "",
+            "displayOrder": 0,
+            "status": "active",
+            "parentName": null
+        }
+    ],
+    "pagination": {
+        "totalResult": 1,
+        "count": 1,
+        "per_page": 5,
+        "current_page": 1,
+        "total_pages": 1
+    }
+}
+
+```
+
+### <a name="change-menu-item-status">Update Menu Item Status</a>
+This api end point will update the status of a menu item.
+###### API End Point: /api/menu/status/change
+###### Request Type: PUT
+###### Request Body:
+```
+{
+    "menuId": 1,
+    "status": "active"
+}
 ```
