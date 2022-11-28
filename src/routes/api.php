@@ -25,6 +25,7 @@ Route::group(['prefix' => 'api', 'middleware' => 'api'], function () {
     Route::get('menu/{id}', [\ParthShukla\Rbac\Http\Controllers\MenuController::class, 'show'])->name('menu.show');
     Route::put('menu/{id}', [\ParthShukla\Rbac\Http\Controllers\MenuController::class, 'update'])->name('menu.update');
     Route::get('menu', [\ParthShukla\Rbac\Http\Controllers\MenuController::class, 'index'])->name('menu.list');
+    Route::put('menu/status/change', [\ParthShukla\Rbac\Http\Controllers\MenuController::class, 'changeStatus'])->name('menu.change_status');
 
 });
 

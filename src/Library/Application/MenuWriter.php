@@ -41,7 +41,7 @@ class MenuWriter
      * @param array $data
      * @return bool
      */
-    public function add(array $data) :bool
+    public function add(array $data): bool
     {
         // setting up the information to be saved
         $this->menu->name = $data['name'];
@@ -75,6 +75,25 @@ class MenuWriter
         $menu->status = empty($data['status']) ? 'disabled' : $data['status'];
 
         // saving the updated information
+        return $menu->save();
+    }
+
+    //-------------------------------------------------------------------------
+
+    /**
+     * Updates the status of a menu item
+     *
+     * @param $data
+     * @return mixed
+     */
+    public function updateStatus($data)
+    {
+        $menu = $this->menu->findOrFail($data['menuId']);
+
+        // updating the status
+        $menu->status = $data['status'];
+
+        // saving the updated status
         return $menu->save();
     }
 }

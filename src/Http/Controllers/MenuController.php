@@ -5,6 +5,7 @@ namespace ParthShukla\Rbac\Http\Controllers;
 use Illuminate\Http\Response;
 use ParthShukla\Rbac\Http\Requests\MenuPostRequest;
 use ParthShukla\Rbac\Http\Requests\MenuPutRequest;
+use ParthShukla\Rbac\Http\Requests\MenuStatusChagneRequest;
 use ParthShukla\Rbac\Library\Application\MenuReader;
 use ParthShukla\Rbac\Library\Application\MenuWriter;
 
@@ -112,15 +113,23 @@ class MenuController extends Controller
                     Response::HTTP_INTERNAL_SERVER_ERROR);
     }
 
+    //-------------------------------------------------------------------------
+
     /**
-     * Remove the specified resource from storage.
+     * Handles request for updating the status of a menu item
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param MenuStatusChagneRequest $request
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\Routing\ResponseFactory|Response
      */
-    public function destroy($id)
+    public function changeStatus(MenuStatusChagneRequest $request)
     {
-        //
+        if($this->menuWriter->updateStatus($request->validated()))
+        {
+            return response(['message' => __('ps-rbac::general.menu_status_change_success')],
+                Response::HTTP_OK);
+        }
+
+        return response(['message' => __('ps-rbac::general.server_error')], Response::HTTP_OK);
     }
 }
 // end of class MenuController

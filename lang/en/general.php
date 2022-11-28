@@ -16,4 +16,5 @@ return [
 
     "add_new_menu_success" => "Menu item added successfully",
     "update_menu_success" => "Menu information updated successfully",
+    "menu_status_change_success" => "Menu status changed successfully",
 ];
