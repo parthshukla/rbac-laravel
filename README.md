@@ -315,12 +315,20 @@ This api end point will return the details of the menu item matching the passed 
 ###### Response Body
 ```
 {
-    "id": 1,
-    "name": "Dashboard",
-    "displayName": "My Dashboard",
+    "id": 2,
+    "name": "Add New Permission",
+    "displayName": "",
     "parentId": 0,
     "displayOrder": 0,
-    "status": "active"
+    "status": "disabled",
+    "permissions": [
+        {
+            "id": 1,
+            "name": "Add Permission",
+            "description": null,
+            "status": "active"
+        }
+    ]
 }
 ```
 
