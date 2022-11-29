@@ -285,7 +285,8 @@ This api end point will be used for adding a new menu item.
     "parentId": "",
     "displayName": "",
     "displayOrder": "",
-    "status": ""
+    "status": "",
+    "permissionId": "",
 }
 ```
 

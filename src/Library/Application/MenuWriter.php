@@ -51,7 +51,13 @@ class MenuWriter
         $this->menu->status = empty($data['status']) ? 'disabled' : $data['status'];
 
         // saving the menu
-        return $this->menu->save();
+        $this->menu->save();
+
+        if(!empty($data['permissionId']))
+        {
+            $this->menu->permissions()->attach($data['permissionId']);
+        }
+        return true;
     }
 
     //-------------------------------------------------------------------------

@@ -45,6 +45,18 @@ class Menu extends Model
                            'menu.display_order', 'menu.status'])
                     ->paginate($pageLimit);
     }
+
+    //-------------------------------------------------------------------------
+
+    /**
+     * Get the permissions associated with the menu
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function permissions()
+    {
+        return $this->belongsToMany(Permission::class);
+    }
 }
 // end of class Menu
 // end of file Menu.php

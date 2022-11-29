@@ -35,7 +35,8 @@ class MenuPostRequest extends FormRequest
             'displayName'=> 'nullable|max:32',
             'parentId' => 'nullable|int|exists:menu,id',
             'displayOrder' => 'nullable|int',
-            'status' => 'nullable|in:active'
+            'status' => 'nullable|in:active',
+            'permissionId' => 'nullable|exists:permissions,id'
         ];
     }
 }
