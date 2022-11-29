@@ -80,6 +80,14 @@ class MenuWriter
         $menu->display_order = empty($data['displayOrder']) ? 0 : $data['displayOrder'];
         $menu->status = empty($data['status']) ? 'disabled' : $data['status'];
 
+        //removing the previous permission
+        $menu->permissions()->detach();
+
+        if(!empty($data['permissionId']))
+        {
+            $menu->permissions()->attach($data['permissionId']);
+        }
+
         // saving the updated information
         return $menu->save();
     }

@@ -302,7 +302,8 @@ This api end point will be used for updating an existing menu item.
     "parentId": "",
     "displayName": "My Dashboard",
     "displayOrder": "",
-    "status": ""
+    "status": "",
+    "permissionId": ""
 }
 ```
 
