@@ -4,6 +4,7 @@ namespace ParthShukla\Rbac\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 /**
  * Model class Menu
@@ -56,6 +57,21 @@ class Menu extends Model
     public function permissions()
     {
         return $this->belongsToMany(Permission::class);
+    }
+
+    //-------------------------------------------------------------------------
+
+    /**
+     * Returns the menu items for the passed role
+     *
+     * @param int $roleId
+     * @return \Illuminate\Support\Collection
+     */
+    public function getMenuForRole(int $roleId)
+    {
+        return DB::table('view_role_menu')
+                    ->where('role_id', $roleId)
+                    ->get();
     }
 }
 // end of class Menu
