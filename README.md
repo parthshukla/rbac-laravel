@@ -28,6 +28,7 @@ List of actions that can be done:
 - [View Menu Item Details](#view-menu-item-details)
 - [List all Menu Items](#list-menu-items)
 - [Change Menu Item Status](#change-menu-item-status)
+- [Get Menu for a role](#get-role-menu)
 
 ### <a name="add-new-role">Add New Role</a>
 This api end point will be used for adding a new role.
@@ -373,4 +374,46 @@ This api end point will update the status of a menu item.
     "menuId": 1,
     "status": "active"
 }
+```
+### <a name="get-role-ment">Get Menu For a Role</a>
+This method will be used to get the menu for a role.
+
+#### Sample Code Implementation
+```
+<?php
+namespace App\Libraray\Application;
+
+use ParthShukla\Rbac\Library\Utility\MenuGenerator;
+
+class TestPackageFeature
+{
+    /**
+     * Instance of MenuGenerator
+     *
+     * @var MenuGenerator
+     */
+    protected $menuGenerator;
+    
+    //-------------------------------------------------------------------------
+
+    /**
+     * Constructor
+     * 
+     * @param MenuGenerator $menuGenerator
+     */
+    public function __construct(MenuGenerator $menuGenerator)
+    {
+        $this->menuGenerator = $menuGenerator;
+    }
+
+    //-------------------------------------------------------------------------
+
+    public function getRoleMenu($roleId)
+    {
+        return $this->menuGenerator->getRoleMenu($roleId);
+    }
+
+}
+// end of class TestPackageFeature
+// end of file TestPackageFeature.php
 ```
