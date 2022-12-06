@@ -1,6 +1,6 @@
 <?php
 
-namespace ParthShukla\Rbac\Library\Application;
+namespace ParthShukla\Rbac\Library\Utility;
 
 use ParthShukla\Rbac\Models\Role;
 

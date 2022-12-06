@@ -249,7 +249,7 @@ This method will be used to check if a permission has been assigned to a particu
 ```
 <?php
 namespace App\Libraray\Application;
-use ParthShukla\Rbac\Library\Application\Rbac;
+use ParthShukla\Rbac\Library\Utility;
 
 class TestPackageFeature
 {
