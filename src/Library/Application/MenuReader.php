@@ -4,6 +4,7 @@ namespace ParthShukla\Rbac\Library\Application;
 
 use ParthShukla\Rbac\Http\Resources\MenuCollection;
 use ParthShukla\Rbac\Http\Resources\MenuResource;
+use ParthShukla\Rbac\Http\Resources\ParentMenuCollection;
 use ParthShukla\Rbac\Models\Menu;
 
 /**
@@ -61,6 +62,18 @@ class MenuReader
             request('limit'): config('ps-rbac.perPageResultLimit');
 
         return new MenuCollection($this->menu->getMenuItems($pageLimit));
+    }
+
+    //-------------------------------------------------------------------------
+
+    /**
+     * Returns the menu items whose parent id is null
+     *
+     * @return ParentMenuCollection
+     */
+    public function getParentMenuList()
+    {
+        return new ParentMenuCollection($this->menu->parent()->select('id', 'name', 'display_name')->get());
     }
 }
 // end of class MenuReader

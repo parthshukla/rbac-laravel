@@ -131,6 +131,18 @@ class MenuController extends Controller
 
         return response(['message' => __('ps-rbac::general.server_error')], Response::HTTP_OK);
     }
+
+    //-------------------------------------------------------------------------
+
+    /**
+     * Handles request for listing parent menu
+     *
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\Routing\ResponseFactory|Response
+     */
+    public function listParentMenu()
+    {
+        return response($this->menuReader->getParentMenuList(), Response::HTTP_OK);
+    }
 }
 // end of class MenuController
 // end of file MenuController.php

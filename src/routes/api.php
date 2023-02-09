@@ -27,5 +27,7 @@ Route::group(['prefix' => 'api', 'middleware' => 'api'], function () {
     Route::get('menu', [\ParthShukla\Rbac\Http\Controllers\MenuController::class, 'index'])->name('menu.list');
     Route::put('menu/status/change', [\ParthShukla\Rbac\Http\Controllers\MenuController::class, 'changeStatus'])->name('menu.change_status');
 
+    Route::get('menu/parent/list', [\ParthShukla\Rbac\Http\Controllers\MenuController::class, 'listParentMenu'])->name('menu.parent_menu_list');
+
 });
 

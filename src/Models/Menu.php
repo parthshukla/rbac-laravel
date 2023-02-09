@@ -73,6 +73,19 @@ class Menu extends Model
                     ->where('role_id', $roleId)
                     ->get();
     }
+
+    //-------------------------------------------------------------------------
+
+    /**
+     * Scope a query to return only menu item whose parent id is null
+     *
+     * @param $query
+     * @return mixed
+     */
+    public function scopeParent($query)
+    {
+        return $query->whereNull('parent_id');
+    }
 }
 // end of class Menu
 // end of file Menu.php
