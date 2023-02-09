@@ -29,6 +29,7 @@ List of actions that can be done:
 - [List all Menu Items](#list-menu-items)
 - [Change Menu Item Status](#change-menu-item-status)
 - [Get Menu for a role](#get-role-menu)
+- [Get Parent Menu List](#get-parent-menu-list)
 
 ### <a name="add-new-role">Add New Role</a>
 This api end point will be used for adding a new role.
@@ -129,7 +130,7 @@ This API end point will be used to add a new permission details
 }
 ```
 ### <a name="update-permission">Update permission Details</a>
-This api end point will be used for updating an existing  role.
+This api end point will be used for updating an existing permission.
 - id is the unique id of the permission to be updated
 ###### API End Point: /api/permissions/{id}
 ###### Request Type: PUT
@@ -144,7 +145,7 @@ This api end point will be used for updating an existing  role.
 ### <a name="view-permission-details">View Permission Details</a>
 This api end point will return the details of the permission matching the passed id
 ###### API End Point: /api/permission/{id}
-- id: unique id of the permission whose details is required
+- id: unique id of the permission whose details required
 ###### Request Type: GET
 ###### Response Body
 ```
@@ -416,4 +417,25 @@ class TestPackageFeature
 }
 // end of class TestPackageFeature
 // end of file TestPackageFeature.php
+```
+### <a name="get-parent-menu-list">Get Parent Menu List</a>
+This api lists all the parent menu items added in the application.
+###### API End Point: /api/menu/parent/list
+###### Request Type: GET
+###### Response:
+```
+{
+    "data": [
+        {
+            "id": 1,
+            "name": "Dashboard",
+            "displayName": "My Dashboard"
+        },
+        {
+            "id": 5,
+            "name": "Permission",
+            "displayName": ""
+        }
+    ]
+}
 ```
