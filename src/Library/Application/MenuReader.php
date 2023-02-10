@@ -58,10 +58,27 @@ class MenuReader
      */
     public function getMenuList()
     {
+        // setting the value of limit
         $pageLimit = (request()->has('limit') && request('limit') > 0) ?
             request('limit'): config('ps-rbac.perPageResultLimit');
 
-        return new MenuCollection($this->menu->getMenuItems($pageLimit));
+        $query = $this->menu->leftJoin('menu as pMenu', 'menu.parent_id', '=', 'pMenu.id')
+                    ->select(['menu.id', 'menu.name', 'menu.display_name', 'menu.parent_id',
+                        'pMenu.name as parent_name','menu.display_order', 'menu.status']);
+
+        if(request()->has('name'))
+        {
+            $query->where('menu.name','like','%'.request()->input('name').'%');
+        }
+
+        if(request()->has('status'))
+        {
+            $query->where('menu.status', request()->input('status'));
+        }
+
+
+
+        return new MenuCollection($query->paginate($pageLimit));
     }
 
     //-------------------------------------------------------------------------

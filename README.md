@@ -1,7 +1,7 @@
 
 ## About Rbac-Laravel
 
-Rbac-Laravel is package for implementing the Role Based Access control in laravel application.
+`Rbac-Laravel` is package for implementing the Role Based Access control in laravel application.
 List of actions that can be done:
 ##### Role Management
 - [Add New Role](#add-new-role)
@@ -45,8 +45,8 @@ This api end point will be used for adding a new role.
 
 ### <a name="list-all-roles">List All Roles</a>
 This api lists all the roles added in the application.
-- limit is non-required parameter. Value of this parameter decides that number of results to be returned in the response. Default value is as per the application settings
-- page is non-required parameter. Value of this parameter is used for identifying the current page for the paginated result. Default value is 1
+- `limit` is non-required parameter. Value of this parameter decides that number of results to be returned in the response. Default value is as per the application settings
+- `page` is non-required parameter. Value of this parameter is used for identifying the current page for the paginated result. Default value is 1
 ###### API End Point: /api/roles?limit=2&page=1
 ###### Request Type: GET
 ###### Response:
@@ -79,7 +79,7 @@ This api lists all the roles added in the application.
 
 ### <a name="update-role">Update Role Details</a>
 This api end point will be used for updating an existing role.
-- id is the unique id of the role to be updated
+- `id` is the unique id of the role to be updated
 ###### API End Point: /api/roles/{id}
 ###### Request Type: PUT
 ###### Request Body
@@ -105,7 +105,7 @@ This api end point will be used for changing the status of an existing role.
 ### <a name="view-role-details">View Role Details</a>
 This api end point will return the details of the role matching the passed id
 ###### API End Point: /api/roles/{id}
-- id: unique id of the role whose details is required
+- `id` unique id of the role whose details is required
 ###### Request Type: GET
 ###### Response Body
 ```
@@ -120,7 +120,7 @@ This api end point will return the details of the role matching the passed id
 ### <a name="view-role-details">Add New Permission</a>
 This API end point will be used to add a new permission details
 ###### API End Point: /api/permissions
-- id: unique id of the role whose details is required
+- `id` unique id of the role whose details is required
 ###### Request Type: POST
 ###### Request Body
 ```
@@ -131,7 +131,7 @@ This API end point will be used to add a new permission details
 ```
 ### <a name="update-permission">Update permission Details</a>
 This api end point will be used for updating an existing permission.
-- id is the unique id of the permission to be updated
+- `id` is the unique id of the permission to be updated
 ###### API End Point: /api/permissions/{id}
 ###### Request Type: PUT
 ###### Request Body
@@ -145,7 +145,7 @@ This api end point will be used for updating an existing permission.
 ### <a name="view-permission-details">View Permission Details</a>
 This api end point will return the details of the permission matching the passed id
 ###### API End Point: /api/permission/{id}
-- id: unique id of the permission whose details required
+- `id` unique id of the permission whose details required
 ###### Request Type: GET
 ###### Response Body
 ```
@@ -159,8 +159,8 @@ This api end point will return the details of the permission matching the passed
 
 ### <a name="list-all-permissions">List All Permissions</a>
 This api lists all the permissions added in the application.
-- limit is non-required parameter. Value of this parameter decides that number of results to be returned in the response. Default value is as per the application settings
-- page is non-required parameter. Value of this parameter is used for identifying the current page for the paginated result. Default value is 1
+- `limit` is non-required parameter. Value of this parameter decides that number of results to be returned in the response. Default value is as per the application settings
+- `page` is non-required parameter. Value of this parameter is used for identifying the current page for the paginated result. Default value is 1
 ###### API End Point: /api/permissions?limit=2&page=1
 ###### Request Type: GET
 ###### Response:
@@ -206,7 +206,7 @@ This api end point will be used for changing the status of an existing permissio
 ### <a name="assign-role-to-permission">Assign Permission To Role</a>
 This API end point will be used for assigning permissions to a role
 ###### API End Point: /api/assign_permissions
-- id: unique id of the role whose details is required
+- `id` unique id of the role whose details required
 ###### Request Type: POST
 ###### Request Body
 ```
@@ -294,7 +294,7 @@ This api end point will be used for adding a new menu item.
 
 ### <a name="update-menu-item">Update Menu Item Information</a>
 This api end point will be used for updating an existing menu item.
-- id is the unique id of the role to be updated
+- `id` is the unique id of the role to be updated
 ###### API End Point: /api/menu/{id}
 ###### Request Type: PUT
 ###### Request Body
@@ -312,7 +312,7 @@ This api end point will be used for updating an existing menu item.
 ### <a name="view-menu-item-details">View Menu Item Details</a>
 This api end point will return the details of the menu item matching the passed id
 ###### API End Point: /api/menu/{id}
-- id: unique id of the role whose details is required
+- `id` unique id of the role whose details is required
 ###### Request Type: GET
 ###### Response Body
 ```
@@ -336,8 +336,10 @@ This api end point will return the details of the menu item matching the passed 
 
 ### <a name="list-menu-items">List All Menu Items</a>
 This api lists all the menu items added in the application.
-- limit is non-required parameter. Value of this parameter decides that number of results to be returned in the response. Default value is as per the application settings
-- page is non-required parameter. Value of this parameter is used for identifying the current page for the paginated result. Default value is 1
+- `limit` is non-required parameter. Value of this parameter decides that number of results to be returned as response. Default value is as per the application settings
+- `page` is non-required parameter. Value of this parameter is used for identifying the current page for the paginated result. Default value is 1
+- `name` is non-required parameter. It is a search filter to get menu-items whose name similar to passed value
+- `status` is non-required parameter. It is a search filter to get menu-items whose status is as per the passed value
 ###### API End Point: /api/menu?limit=2&page=1
 ###### Request Type: GET
 ###### Response:
