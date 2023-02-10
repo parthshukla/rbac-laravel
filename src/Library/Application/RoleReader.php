@@ -42,9 +42,24 @@ class RoleReader
      */
     public function roleList()
     {
+        // setting the page limit
         $pageLimit = (request()->has('limit') && request('limit') > 0) ?
                             request('limit'): config('ps-rbac.perPageResultLimit');
-        return new RoleCollection($this->role->paginate($pageLimit));
+
+        $query = $this->role->select(['id','name','description', 'status']);
+
+        // filter by name
+        if(request()->has('name'))
+        {
+            $query->where('name', 'like', '%'.request('name').'%');
+        }
+
+        //filter by status
+        if(request()->has('status'))
+        {
+            $query->where('status', request('status'));
+        }
+        return new RoleCollection($query->paginate($pageLimit));
     }
 
     //-------------------------------------------------------------------------

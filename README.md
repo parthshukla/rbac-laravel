@@ -47,6 +47,8 @@ This api end point will be used for adding a new role.
 This api lists all the roles added in the application.
 - `limit` is non-required parameter. Value of this parameter decides that number of results to be returned in the response. Default value is as per the application settings
 - `page` is non-required parameter. Value of this parameter is used for identifying the current page for the paginated result. Default value is 1
+- `name` is non-required parameter. It can be used to filter the results using the name
+- `status` is non-required parameter. It can be used to filter the results using the status
 ###### API End Point: /api/roles?limit=2&page=1
 ###### Request Type: GET
 ###### Response:
