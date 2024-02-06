@@ -3,6 +3,7 @@
 namespace ParthShukla\Rbac\Library\Application;
 
 use ParthShukla\Rbac\Http\Resources\RoleCollection;
+use ParthShukla\Rbac\Http\Resources\RoleListForDropdownCollection;
 use ParthShukla\Rbac\Http\Resources\RoleResource;
 use ParthShukla\Rbac\Models\Role;
 
@@ -59,6 +60,10 @@ class RoleReader
         {
             $query->where('status', request('status'));
         }
+
+        //adding default sorting to show the latest first
+        $query->orderBy('id', 'desc');
+
         return new RoleCollection($query->paginate($pageLimit));
     }
 
@@ -73,6 +78,22 @@ class RoleReader
     public function getRoleDetails($roleId)
     {
         return new RoleResource($this->role->find($roleId));
+    }
+
+    //-------------------------------------------------------------------------
+
+    /**
+     * Returns the list of roles for dropdown.
+     *
+     * @return mixed
+     */
+    public function roleListForDropdown()
+    {
+        $roles = $this->role->select(['id','name'])
+                            ->where('status', 'active')
+                            ->orderBy('name')
+                            ->get();
+        return new RoleListForDropdownCollection($roles);
     }
 
 }

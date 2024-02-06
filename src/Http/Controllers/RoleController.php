@@ -125,6 +125,18 @@ class RoleController extends Controller
     {
         return response($this->roleReader->getRoleDetails($id), Response::HTTP_OK);
     }
+
+    //-------------------------------------------------------------------------
+
+    /**
+     * Handles requests for listing the roles for dropdown
+     *
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\Routing\ResponseFactory|Response
+     */
+    public function roleList()
+    {
+        return response($this->roleReader->roleListForDropdown(), Response::HTTP_OK);
+    }
 }
 // end of class RoleController
 // end of file RoleController.php

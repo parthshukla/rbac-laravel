@@ -37,6 +37,20 @@ class RolePostRequest extends FormRequest
             'description' => 'max:64'
         ];
     }
+
+    //-------------------------------------------------------------------------
+
+    /**
+     * Get the error messages for the defined validation rules.
+     *
+     * @return array<string, mixed>
+     */
+    public function messages()
+    {
+        return [
+            'name.unique' => 'Role name already exists',
+        ];
+    }
 }
 // end of class RolePostRequest
 // end of file RolePostRequest
