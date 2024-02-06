@@ -60,6 +60,10 @@ class RoleReader
         {
             $query->where('status', request('status'));
         }
+
+        //adding default sorting to show the latest first
+        $query->orderBy('id', 'desc');
+
         return new RoleCollection($query->paginate($pageLimit));
     }
 
