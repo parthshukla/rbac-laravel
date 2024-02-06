@@ -9,6 +9,7 @@ List of actions that can be done:
 - [Update Role Details](#update-role)
 - [Change Role Status](#change-role-status)
 - [View Role Details](#view-role-details)
+- [Role List for Dropdown](#role-list-dropdown)
 
 ##### Permission Management
 - [Add New Permission](#add-new-permission)
@@ -116,6 +117,26 @@ This api end point will return the details of the role matching the passed id
     "name": "Administrator",
     "description": "This is administrator role",
     "status": "blocked"
+}
+```
+
+### <a name="role-list-dropdown">Role List for Dropdown</a>
+This api end point will return the list of roles for dropdown
+###### API End Point: /api/roles/dropdown
+###### Request Type: GET
+###### Response Body
+```
+{
+    "data": [
+        {
+            "id": 1,
+            "name": "Administrator"
+        },
+        {
+            "id": 2,
+            "name": "basic"
+        }
+    ]
 }
 ```
 
