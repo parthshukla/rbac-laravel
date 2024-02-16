@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Response;
 use ParthShukla\Rbac\Http\Requests\AddNewPermissionGroupRequest;
 use ParthShukla\Rbac\Http\Requests\UpdatePermissionGroupRequest;
+use ParthShukla\Rbac\Library\Application\PermissionGroupReader;
 use ParthShukla\Rbac\Library\Application\PermissionGroupWriter;
 
 /**
@@ -25,16 +26,39 @@ class PermissionGroupController extends Controller
      */
     protected $permissionGroupWriter;
 
+    /**
+     * PermissionGroupReader
+     *
+     * @var PermissionGroupReader
+     */
+    protected $permissionGroupReader;
+
     //--------------------------------------------------------------------------------------
 
     /**
      * Constructor
      *
      * @param PermissionGroupWriter $permissionGroupWriter
+     * @param PermissionGroupReader $permissionGroupReader
      */
-    public function __construct(PermissionGroupWriter $permissionGroupWriter)
+    public function __construct(PermissionGroupWriter $permissionGroupWriter,
+                                PermissionGroupReader $permissionGroupReader)
     {
         $this->permissionGroupWriter = $permissionGroupWriter;
+        $this->permissionGroupReader = $permissionGroupReader;
+    }
+
+    //--------------------------------------------------------------------------------------
+
+    /**
+     * Returns list of all the permission groups
+     *
+     * @return Application|ResponseFactory|Response
+     */
+    public function index()
+    {
+        return response($this->permissionGroupReader->getAllPermissionGroups(),
+            Response::HTTP_OK) ;
     }
 
     //--------------------------------------------------------------------------------------
@@ -43,7 +67,7 @@ class PermissionGroupController extends Controller
      * Add new permission group
      *
      * @param AddNewPermissionGroupRequest $request
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\Routing\ResponseFactory|Response
+     * @return Application|ResponseFactory|Response
      */
     public function store(AddNewPermissionGroupRequest $request)
     {
@@ -63,7 +87,7 @@ class PermissionGroupController extends Controller
      *
      * @param UpdatePermissionGroupRequest $request
      * @param $id
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\Routing\ResponseFactory|Response
+     * @return Application|ResponseFactory|Response
      */
     public function update(UpdatePermissionGroupRequest $request, $id)
     {
