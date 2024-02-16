@@ -30,6 +30,18 @@ class PermissionGroups extends Model
      * @var array<string>
      */
     protected $guarded = ['id'];
+
+    //--------------------------------------------------------------------------------------
+
+    /**
+     * Get the permissions that belongs to the group
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function permissions()
+    {
+        return $this->hasMany(Permission::class,'permission_group_id');
+    }
 }
 //end of class PermissionGroups
 //end of file PermissionGroups.php

@@ -25,6 +25,7 @@ class PermissionGroupResource extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'status' => $this->is_active ? "Active" : "Inactive",
+            'permissions' => PermissionResource::collection($this->permissions)
             ];
     }
 }
