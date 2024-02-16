@@ -31,5 +31,8 @@ Route::group(['prefix' => 'api', 'middleware' => 'api'], function () {
 
     Route::get('menu/parent/list', [\ParthShukla\Rbac\Http\Controllers\MenuController::class, 'listParentMenu'])->name('menu.parent_menu_list');
 
+    //API end points related to permission group
+    Route::post('permission_groups', [\ParthShukla\Rbac\Http\Controllers\PermissionGroupController::class, 'store'])->name('permission_group.create');
+
 });
 
