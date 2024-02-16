@@ -34,6 +34,7 @@ Route::group(['prefix' => 'api', 'middleware' => 'api'], function () {
     //API end points related to permission group
     Route::post('permission_groups', [\ParthShukla\Rbac\Http\Controllers\PermissionGroupController::class, 'store'])->name('permission_group.create');
     Route::put('permission_groups/{id}', [\ParthShukla\Rbac\Http\Controllers\PermissionGroupController::class, 'update'])->name('permission_group.update');
+    Route::get('permission_groups/{id}', [\ParthShukla\Rbac\Http\Controllers\PermissionGroupController::class, 'show'])->name('permission_group.details');
     Route::get('permission_groups', [\ParthShukla\Rbac\Http\Controllers\PermissionGroupController::class, 'index'])->name('permission_group.list');
 
 });

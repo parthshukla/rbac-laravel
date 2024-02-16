@@ -2,7 +2,9 @@
 
 namespace ParthShukla\Rbac\Library\Application;
 
+use Illuminate\Support\Facades\Log;
 use ParthShukla\Rbac\Http\Resources\PermissionGroupCollection;
+use ParthShukla\Rbac\Http\Resources\PermissionGroupResource;
 use ParthShukla\Rbac\Models\PermissionGroups;
 
 /**
@@ -47,6 +49,25 @@ class PermissionGroupReader
         $limit = request('limit') > 0 ?
                     request('limit') : config('ps-rbac.perPageResultLimit');
         return new PermissionGroupCollection($this->permissionGroups->paginate($limit));
+    }
+
+    //--------------------------------------------------------------------------------------
+
+    /**
+     * Returns details of a permission group
+     *
+     * @param $id
+     * @return mixed
+     */
+    public function getPermissionGroupDetails($id)
+    {
+        try {
+            $permission = $this->permissionGroups->findOrFail($id);
+            return new PermissionGroupResource($permission);
+        } catch (\Exception $e) {
+            Log::error('Invalid permission id passed: '.$e->getMessage());
+            return false;
+        }
     }
 
 }

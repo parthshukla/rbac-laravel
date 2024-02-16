@@ -63,6 +63,30 @@ class PermissionGroupController extends Controller
 
     //--------------------------------------------------------------------------------------
 
+
+    /**
+     * Returns details of a permission group
+     *
+     * @param $id
+     * @return Application|ResponseFactory|Response
+     */
+    public function show($id)
+    {
+        $response = $this->permissionGroupReader->getPermissionGroupDetails($id);
+
+        if($response)
+        {
+            return response($response, Response::HTTP_OK);
+        }
+        else
+        {
+            return response(['message' => __('ps-rbac::general.server_error')],
+                Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    //--------------------------------------------------------------------------------------
+
     /**
      * Add new permission group
      *
