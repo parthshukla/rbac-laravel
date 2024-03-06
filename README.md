@@ -3,6 +3,15 @@
 
 `Rbac-Laravel` is package for implementing the Role Based Access control in laravel application.
 List of actions that can be done:
+
+### Version 1.0.0
+- Role Management
+- Permission Management
+- Manage Role Permissions
+- Menu Management
+### Version 1.1.0
+- Added Permission Group Management - Can be used for grouping the permissions under one title
+
 ##### Role Management
 - [Add New Role](#add-new-role)
 - [List All Roles](#list-all-roles)
@@ -32,6 +41,13 @@ List of actions that can be done:
 - [Get Menu for a role](#get-role-menu)
 - [Get Parent Menu List](#get-parent-menu-list)
 
+### Permissions Group Management
+- [Add New Permission Group](#add-new-permission-group)
+- [Update Permission Group Details](#update-permission-group)
+- [View Permission Group Details](#view-permission-group-details)
+- [List all Permission Groups](#list-all-permission-groups)
+
+## Role Management
 ### <a name="add-new-role">Add New Role</a>
 This api end point will be used for adding a new role.
 ###### API End Point: /api/roles
@@ -139,7 +155,7 @@ This api end point will return the list of roles for dropdown
     ]
 }
 ```
-
+## Permission Management
 ### <a name="view-role-details">Add New Permission</a>
 This API end point will be used to add a new permission details
 ###### API End Point: /api/permissions
@@ -298,7 +314,7 @@ protected $rbac;
 // end of class TestPackageFeature
 // end of file TestPackageFeature.php
 ```
-
+## Menu Management
 ### <a name="add-new-menu-item">Add New Menu Item</a>
 This api end point will be used for adding a new menu item.
 ###### API End Point: /api/menu
@@ -464,3 +480,91 @@ This api lists all the parent menu items added in the application.
     ]
 }
 ```
+## Permissions Group Management
+### <a name="add-new-permission-group">Add New Permission Group</a>
+This api end point will be used for adding a new permission group.
+###### API End Point: /api/permission_groups
+###### Request Type: POST
+###### Request Body
+```
+{
+    "name": "User Management",
+    "description": "This group contains all the permissions related to user management"
+}
+```
+### <a name="update-permission-group">Update Permission Group Details</a>
+This api end point will be used for updating an existing permission group.
+- `id` is the unique id of the permission group to be updated
+###### API End Point: /api/permission_groups/{id}
+###### Request Type: PUT
+###### Request Body
+```
+{
+    "name": "User Management",
+    "description": "This group contains all the permissions related to user management",
+    
+}
+```
+### <a name="view-permission-group-details">View Permission Group Details</a>
+This api end point will return the details of the permission group matching the passed id
+###### API End Point: /api/permission_groups/{id}
+- `id` unique id of the permission group whose details is required
+###### Request Type: GET
+###### Response Body
+```
+{
+    "id": 1,
+    "name": "Manage Permissions",
+    "status": "Active",
+    "permissions": [
+        {
+            "id": 1,
+            "name": "Add Permission",
+            "description": null,
+            "status": "active"
+        },
+        {
+            "id": 2,
+            "name": "Update Permission",
+            "description": null,
+            "status": "active"
+        },       
+    ]
+}
+```
+### <a name="list-all-permission-groups">List All Permission Groups</a>
+This api lists all the permission groups added in the application.
+- `limit` is non-required parameter. Value of this parameter decides that number of results to be returned as response. Default value is as per the application settings
+- `page` is non-required parameter. Value of this parameter is used for identifying the current page for the paginated result. Default value is 1
+- `name` is non-required parameter. It is a search filter to get permission-groups whose name similar to passed value
+- `status` is non-required parameter. It is a search filter to get permission-groups whose status is as per the passed value
+###### API End Point: /api/permission_groups?limit=2&page=1
+###### Request Type: GET
+###### Response:
+```
+{
+    "data": [
+        {
+            "id": 1,
+            "name": "Manage Permissions",
+            "description": null,
+            "status": "Active"
+        },
+        {
+            "id": 2,
+            "name": "Manage Roles",
+            "description": "This group has all the permissions to manage the role",
+            "status": "Active"
+        }
+    ],
+    "pagination": {
+        "totalResult": 2,
+        "count": 2,
+        "per_page": 5,
+        "current_page": 1,
+        "total_pages": 1
+    }
+}
+
+```
+

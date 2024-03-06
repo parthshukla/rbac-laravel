@@ -48,7 +48,19 @@ class PermissionGroupReader
     {
         $limit = request('limit') > 0 ?
                     request('limit') : config('ps-rbac.perPageResultLimit');
-        return new PermissionGroupCollection($this->permissionGroups->paginate($limit));
+
+        $query = $this->permissionGroups->select('id', 'name', 'description', 'is_active');
+
+        if (request()->has('name')) {
+            $query->where('name', 'like', '%'.request('name').'%');
+        }
+
+        if (request()->has('status')) {
+            $status = request('status') == 'active' ? 1 : 0;
+            $query->where('is_active', $status);
+        }
+
+        return new PermissionGroupCollection($query->paginate($limit));
     }
 
     //--------------------------------------------------------------------------------------
