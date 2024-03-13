@@ -17,4 +17,8 @@ return [
     "add_new_menu_success" => "Menu item added successfully",
     "update_menu_success" => "Menu information updated successfully",
     "menu_status_change_success" => "Menu status changed successfully",
+
+    "add_new_permission_group_success" => "Permission group added successfully",
+    "update_permission_group_success" => "Permission group updated successfully",
+
 ];
