@@ -54,6 +54,8 @@ class MenuGenerator
                 'displayName' => empty($menuItem->menu_display_name)  ? "" : $menuItem->menu_display_name,
                 'parentName' => empty($menuItem->parent_menu_name) ? "" : $menuItem->parent_menu_name,
                 'displayOrder' => $menuItem->display_order,
+                'icon' => empty($menuItem->icon) ? "" : $menuItem->icon,
+                'route' => empty($menuItem->route) ? "" : $menuItem->route,
                 'subMenu' => [],
             ];
 
@@ -69,6 +71,8 @@ class MenuGenerator
                     'displayName' => empty($menuItem->parent_menu_display_name)  ? "" : $menuItem->parent_menu_display_name,
                     'parentName' => empty($menuItem->parent_menu_name) ? "" : $menuItem->parent_menu_name,
                     'displayOrder' => $menuItem->parent_menu_display_order,
+                    'icon' => empty($menuItem->icon) ? "" : $menuItem->icon,
+                    'route' => empty($menuItem->route) ? "" : $menuItem->route,
                     'subMenu' => [],
                 ];
                 array_push($menu[$menuItem->parent_menu_name]['subMenu'], $arrMenuItem);

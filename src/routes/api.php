@@ -19,6 +19,7 @@ Route::group(['prefix' => 'api', 'middleware' => 'api'], function () {
     Route::put('permissions/status/change',[\ParthShukla\Rbac\Http\Controllers\PermissionController::class, 'changeStatus'])->name('permissions.change_status');
 
     // API end point related to permission assignment to role
+    Route::get('assign_permissions',[\ParthShukla\Rbac\Http\Controllers\RolePermissionController::class, 'index'])->name('assignPermission.index');
     Route::post('assign_permissions',[\ParthShukla\Rbac\Http\Controllers\RolePermissionController::class, 'store'])->name('assignPermission.assign');
     Route::get('assigned_permissions/{roleId}', [\ParthShukla\Rbac\Http\Controllers\RolePermissionController::class, 'show'])->name('assignPermission.list');
 

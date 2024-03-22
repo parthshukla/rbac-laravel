@@ -30,7 +30,9 @@ class MenuCollection extends ResourceCollection
                     'parentId' => empty($data->parent_id) ? "" : $data->parent_id,
                     'displayOrder' => $data->display_order,
                     'status' => $data->status,
-                    'parentName' => $data->parent_name
+                    'parentName' => $data->parent_name,
+                    'icon' => empty($data->icon) ? "" : $data->icon,
+                    'route' => empty($data->route) ? "" : $data->route,
                 ];
             }),
             'pagination' => [

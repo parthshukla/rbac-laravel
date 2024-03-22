@@ -64,7 +64,8 @@ class MenuReader
 
         $query = $this->menu->leftJoin('menu as pMenu', 'menu.parent_id', '=', 'pMenu.id')
                     ->select(['menu.id', 'menu.name', 'menu.display_name', 'menu.parent_id',
-                        'pMenu.name as parent_name','menu.display_order', 'menu.status']);
+                        'pMenu.name as parent_name','menu.display_order', 'menu.status',
+                        'menu.icon', 'menu.route']);
 
         if(request()->has('name'))
         {
@@ -90,7 +91,7 @@ class MenuReader
      */
     public function getParentMenuList()
     {
-        return new ParentMenuCollection($this->menu->parent()->select('id', 'name', 'display_name')->get());
+        return new ParentMenuCollection($this->menu->parent()->select('id', 'name', 'display_name', 'icon', 'route')->get());
     }
 }
 // end of class MenuReader
