@@ -81,6 +81,8 @@ class MenuWriter
         $menu->parent_id = empty($data['parentId']) ? null : $data['parentId'];
         $menu->display_order = empty($data['displayOrder']) ? 0 : $data['displayOrder'];
         $menu->status = empty($data['status']) ? 'disabled' : $data['status'];
+        $menu->icon = empty($data['icon']) ? null : $data['icon'];
+        $menu->route = empty($data['route']) ? null : $data['route'];
 
         //removing the previous permission
         $menu->permissions()->detach();
