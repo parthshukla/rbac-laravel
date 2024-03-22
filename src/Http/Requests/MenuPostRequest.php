@@ -36,7 +36,9 @@ class MenuPostRequest extends FormRequest
             'parentId' => 'nullable|int|exists:menu,id',
             'displayOrder' => 'nullable|int',
             'status' => 'nullable|in:active',
-            'permissionId' => 'nullable|exists:permissions,id'
+            'permissionId' => 'nullable|exists:permissions,id',
+            'icon' => 'nullable|max:32',
+            'route' => 'nullable|max:63',
         ];
     }
 }

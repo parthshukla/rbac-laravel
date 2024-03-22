@@ -49,6 +49,8 @@ class MenuWriter
         $this->menu->parent_id = empty($data['parentId']) ? null : $data['parentId'];
         $this->menu->display_order = empty($data['displayOrder']) ? 0 : $data['displayOrder'];
         $this->menu->status = empty($data['status']) ? 'disabled' : $data['status'];
+        $this->menu->icon = empty($data['icon']) ? null : $data['icon'];
+        $this->menu->route = empty($data['route']) ? null : $data['route'];
 
         // saving the menu
         $this->menu->save();
