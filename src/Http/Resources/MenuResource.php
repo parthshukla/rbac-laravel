@@ -28,7 +28,9 @@ class MenuResource extends JsonResource
             'parentId' => empty($this->parent_id) ? 0 : $this->parent_id,
             'displayOrder' => $this->display_order,
             'status' => $this->status,
-            'permissions' => PermissionResource::collection($this->permissions)
+            'icon' => empty($this->icon) ? "" : $this->icon,
+            'route' => empty($this->route) ? "" : $this->route,
+            'permissions' => PermissionResource::collection($this->permissions),
         ];
     }
 }

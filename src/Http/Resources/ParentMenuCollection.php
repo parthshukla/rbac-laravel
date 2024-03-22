@@ -27,6 +27,8 @@ class ParentMenuCollection extends ResourceCollection
                     'id' => $data->id,
                     'name' => $data->name,
                     'displayName' => empty($data->display_name) ? "" : $data->display_name,
+                    'icon' => empty($data->icon) ? "" : $data->icon,
+                    'route' => empty($data->route) ? "" : $data->route,
                 ];
             })
         ];
