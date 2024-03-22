@@ -5,6 +5,7 @@ namespace ParthShukla\Rbac\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use ParthShukla\Rbac\Http\Requests\AssignPermissionRoleRequest;
+use ParthShukla\Rbac\Library\Application\PermissionGroupReader;
 use ParthShukla\Rbac\Library\Application\RolePermissionReader;
 use ParthShukla\Rbac\Library\Application\RolePermissionWriter;
 
@@ -27,10 +28,17 @@ class RolePermissionController extends Controller
 
     /**
      * Instance of RolePermissionReader
-     * 
+     *
      * @var RolePermissionReader
      */
     protected $rolePermissionReader;
+
+    /**
+     * Instance of PermissionGroupReader
+     *
+     * @var PermissionGroupReader
+     */
+    protected $permissionGroupReader;
 
     //-------------------------------------------------------------------------
 
@@ -39,12 +47,14 @@ class RolePermissionController extends Controller
      *
      * @param RolePermissionWriter $rolePermissionWriter
      * @param RolePermissionReader $rolePermissionReader
+     * @param PermissionGroupReader $permissionGroupReader
      */
     public function __construct(RolePermissionWriter $rolePermissionWriter,
-                        RolePermissionReader $rolePermissionReader)
+                        RolePermissionReader $rolePermissionReader, PermissionGroupReader $permissionGroupReader)
     {
         $this->rolePermissionWriter = $rolePermissionWriter;
         $this->rolePermissionReader = $rolePermissionReader;
+        $this->permissionGroupReader = $permissionGroupReader;
     }
 
     //-------------------------------------------------------------------------
@@ -54,10 +64,12 @@ class RolePermissionController extends Controller
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
+     * @since 1.2.1
      */
     public function index()
     {
-        //
+        $data['data'] = $this->permissionGroupReader->getPermissionsByGroup();
+        return response($data, Response::HTTP_OK);
     }
 
     //-------------------------------------------------------------------------
@@ -91,41 +103,6 @@ class RolePermissionController extends Controller
         return response($this->rolePermissionReader->getPermissionsAssignedToRole($roleId), Response::HTTP_OK);
     }
 
-    //-------------------------------------------------------------------------
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
 }
 // end of class RolePermissionController
 // end of file RolePermissionController.php

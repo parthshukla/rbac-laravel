@@ -5,6 +5,8 @@ namespace ParthShukla\Rbac\Library\Application;
 use Illuminate\Support\Facades\Log;
 use ParthShukla\Rbac\Http\Resources\PermissionGroupCollection;
 use ParthShukla\Rbac\Http\Resources\PermissionGroupResource;
+use ParthShukla\Rbac\Http\Resources\PermissionGroupWithPermissionCollection;
+use ParthShukla\Rbac\Http\Resources\PermissionGroupWithPermissionResource;
 use ParthShukla\Rbac\Models\PermissionGroups;
 
 /**
@@ -80,6 +82,54 @@ class PermissionGroupReader
             Log::error('Invalid permission id passed: '.$e->getMessage());
             return false;
         }
+    }
+
+    //--------------------------------------------------------------------------------------
+
+    /**
+     * Returns the list of all the permission groups
+     *
+     * @return PermissionGroupCollection
+     * @since 1.2.1
+     */
+    public function getPermissionsByGroup()
+    {
+        $returnData = [];
+        $permissionGroups = $this->permissionGroups->active()->orderBy('name', 'asc')->get();
+        foreach($permissionGroups as $permissionGroup)
+        {
+            $returnData[] = [
+                'id' => $permissionGroup->id,
+                'name' => $permissionGroup->name,
+                'permissions' => $this->getPermissonsListForTheGroup($permissionGroup->permissions)
+            ];
+        }
+        return $returnData;
+    }
+
+    //--------------------------------------------------------------------------------------
+
+    /**
+     * Returns the list of all the permission within a  permission group
+     *
+     * @return PermissionGroupWithPermissionCollection
+     * @since 1.2.1
+     */
+    private function getPermissonsListForTheGroup($permissions)
+    {
+        $arrPermissions = [];
+
+        foreach($permissions as $permission)
+        {
+            if($permission->status == 'active')
+            {
+                $arrPermissions[] = [
+                    'id' => $permission->id,
+                    'name' => $permission->name
+                ];
+            }
+        }
+        return $arrPermissions;
     }
 
 }
